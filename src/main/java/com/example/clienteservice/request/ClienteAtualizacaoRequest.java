@@ -12,8 +12,6 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ClienteAtualizacaoRequest {
-    @NotNull
-    private Long id;
     @Length(min = 3)
     @Length(max = 15)
     private String nome;

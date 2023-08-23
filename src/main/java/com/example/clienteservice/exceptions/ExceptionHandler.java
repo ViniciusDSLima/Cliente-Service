@@ -1,6 +1,6 @@
 package com.example.clienteservice.exceptions;
 
-import com.example.clienteservice.exceptions.erros.IdEmpty;
+import com.example.clienteservice.exceptions.erros.IdNotFoundException;
 import com.example.clienteservice.exceptions.erros.NoDataFound;
 import com.example.clienteservice.exceptions.erros.ObjectNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,13 +29,13 @@ public class ExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
     }
-    @org.springframework.web.bind.annotation.ExceptionHandler(IdEmpty.class)
-    public ResponseEntity<Error> noIdPresent(NoDataFound ex, HttpServletRequest request){
 
-        Error error = new Error(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Bad Request",
+    @org.springframework.web.bind.annotation.ExceptionHandler(IdNotFoundException.class)
+    public ResponseEntity<Error> entityNotFoundException(IdNotFoundException ex, HttpServletRequest request){
+
+        Error error = new Error(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), "Id nao existente",
                 ex.getMessage(), request.getRequestURI());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-    }
-
+      }
 }
