@@ -1,10 +1,7 @@
 package com.example.clienteservice.domain;
 
 import com.example.clienteservice.enums.UserRole;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +23,7 @@ public class User implements UserDetails {
     private Long id;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     public User(String email, String encryptedPassword, UserRole role) {
